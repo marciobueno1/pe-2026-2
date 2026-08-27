@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define TAM 20
+#define TAM 7
 
 void imprimirVetor(int v[], int n);
 void preencherOrdenadoDigitacao(int v[], int n);
@@ -26,8 +26,8 @@ void imprimirVetor(int v[], int n) {
 
 void preencherOrdenadoDigitacao(int v[], int n) {
     int num;
-    for (int i = 0; i < n; i += i) {
-        printf("Digite um número inteiro: ");
+    for (int i = 0; i < n; i += 1) {
+        printf("Digite o %dº número inteiro:\n", i + 1);
         scanf("%d", &num);
         inserirOrdenado(v, i, num);
     }
