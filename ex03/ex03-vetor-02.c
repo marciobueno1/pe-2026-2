@@ -7,6 +7,7 @@ void imprimirVetor(int v[], int n);
 int posMaiorValor(int v[], int n);
 int buscaSequencial(int v[], int n, int x);
 int removerValor(int v[], int n, int x);
+int inserirInicio(int v[], int n, int x);
 
 int main() {
     int opcao, num, posA, posB, tamA = TAM, tamB = TAM;
@@ -22,6 +23,8 @@ int main() {
         printf("3 - Achar o maior elemento dos dois vetores\n");
         printf("4 - Remover um valor do vetor A\n");
         printf("5 - Remover um valor do vetor B\n");
+        printf("6 - Inserir um valor no início do vetor A\n");
+        printf("7 - Inserir um valor no início do vetor B\n");
         printf("Digite sua opção (0 para sair): \n");
         scanf("%d", &opcao);
         switch (opcao) {
@@ -71,6 +74,26 @@ int main() {
                     printf("O valor %d foi removido do vetor B\n", num);
                 } else {
                     printf("O valor %d não se encontra no vetor B, e nada foi removido!\n", num);
+                }
+                break;
+            case 6:
+                printf("Digite um valor a ser inserido no início do vetor A:\n");
+                scanf("%d", &num);
+                if (inserirInicio(va, tamA, num)) {
+                    tamA += 1;
+                    printf("%d foi inserido com sucesso!\n", num);
+                } else {
+                    printf("%d não foi inserido, pois o vetor A está cheio!\n", num);
+                }
+                break;
+            case 7:
+                printf("Digite um valor a ser inserido no início do vetor B:\n");
+                scanf("%d", &num);
+                if (inserirInicio(va, tamB, num)) {
+                    tamB += 1;
+                    printf("%d foi inserido com sucesso!\n", num);
+                } else {
+                    printf("%d não foi inserido, pois o vetor B está cheio!\n", num);
                 }
                 break;
             default:
@@ -129,5 +152,16 @@ int removerValor(int v[], int n, int x) {
     for (int i = pos + 1; i < n; i += 1) {
         v[i - 1] = v[i];
     }
+    return 1;
+}
+
+int inserirInicio(int v[], int n, int x) {
+    if (n >= TAM) {
+        return 0;
+    }
+    for (int i = n - 1; i >= 0; i -= 1) {
+        v[i + 1] = v[i];
+    }
+    v[0] = x;
     return 1;
 }
