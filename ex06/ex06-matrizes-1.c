@@ -5,20 +5,29 @@
 
 void preencherMatriz(int m[][QTD_COLUNAS], int lins, int cols);
 void imprimirMatriz(int m[][QTD_COLUNAS], int lins, int cols);
+void imprimirMatrizTransp(int m[][QTD_LINHAS], int lins, int cols);
 void maiorValorMatriz(int m[][QTD_COLUNAS], int lins, int cols, int *posI, int *posJ);
 int buscarMatriz(int m[][QTD_COLUNAS], int lins, int cols, int x, int *posI, int *posJ);
 void somatorioPorLinha(int m[][QTD_COLUNAS], int lins, int cols, int soma[]);
 void somatorioPorColuna(int m[][QTD_COLUNAS], int lins, int cols, int soma[]);
+void zerarAbaixoDiagonalPrincipal(int m[][QTD_COLUNAS], int lins, int cols);
+void zerarAcimaDiagonalSecundaria1(int m[][QTD_COLUNAS], int lins, int cols);
+void zerarAcimaDiagonalSecundaria1(int m[][QTD_COLUNAS], int lins, int cols);
+void matrizTransposta(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols, int mt[QTD_COLUNAS][QTD_LINHAS]);
+void matrizTranspostaInPlace(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols);
 
 int main() {
     int iMaior, jMaior;
-    int matriz[QTD_LINHAS][QTD_COLUNAS];
+    int matriz[QTD_LINHAS][QTD_COLUNAS], matrizTransp[QTD_COLUNAS][QTD_LINHAS];
     preencherMatriz(matriz, QTD_LINHAS, QTD_COLUNAS);
     printf("\nImpressão Matriz M\n");
     imprimirMatriz(matriz, QTD_LINHAS, QTD_COLUNAS);
     maiorValorMatriz(matriz, QTD_LINHAS, QTD_COLUNAS, &iMaior, &jMaior);
     printf("O maior valor é %d e está na posição (%d, %d)\n",
         matriz[iMaior][jMaior], iMaior + 1, jMaior + 1);
+    printf("\n\nMatriz Transposta\n");
+    matrizTransposta(matriz, QTD_LINHAS, QTD_COLUNAS, matrizTransp);
+    imprimirMatrizTransp(matrizTransp, QTD_COLUNAS, QTD_LINHAS);
     return 0;
 }
 
@@ -32,6 +41,15 @@ void preencherMatriz(int m[][QTD_COLUNAS], int lins, int cols) {
 }
 
 void imprimirMatriz(int m[][QTD_COLUNAS], int lins, int cols) {
+    for (int i = 0; i < lins; i += 1) {
+        for (int j = 0; j < cols; j += 1) {
+            printf("%2d ", m[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void imprimirMatrizTransp(int m[][QTD_LINHAS], int lins, int cols) {
     for (int i = 0; i < lins; i += 1) {
         for (int j = 0; j < cols; j += 1) {
             printf("%2d ", m[i][j]);
@@ -116,3 +134,45 @@ void zerarAbaixoDiagonalPrincipal(int m[][QTD_COLUNAS], int lins, int cols) {
 //         }
 //     }
 // }
+
+void zerarAcimaDiagonalSecundaria1(int m[][QTD_COLUNAS], int lins, int cols) {
+    if (lins != cols) {
+        printf("Não é possível realizar esta operação, pois a matriz não é quadrada!\n");
+        return;
+    }
+    for (int i = 0; i < lins; i += 1) {
+        for (int j = 0; j < cols; j += 1) {
+            if (i + j < lins - 1) {
+                m[i][j] = 0;
+            }
+        }
+    }
+}
+
+void zerarAcimaDiagonalSecundaria2(int m[][QTD_COLUNAS], int lins, int cols) {
+    if (lins != cols) {
+        printf("Não é possível realizar esta operação, pois a matriz não é quadrada!\n");
+        return;
+    }
+    for (int i = 0; i < lins - 1; i += 1) {
+        for (int j = 0; j < lins - 1 - i; j += 1) {
+            m[i][j] = 0;
+        }
+    }
+}
+
+void matrizTransposta(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols, int mt[QTD_COLUNAS][QTD_LINHAS]) {
+    for (int i = 0; i < cols; i += 1) {
+        for (int j = 0; j < lins; j += 1) {
+            mt[i][j] = m[j][i];
+        }
+    }
+}
+
+void matrizTranspostaInPlace(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols) {
+    if (lins != cols) {
+        printf("Não é possível realizar esta operação, pois a matriz não é quadrada!\n");
+        return;
+    }
+    
+}
