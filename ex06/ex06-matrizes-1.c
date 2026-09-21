@@ -173,9 +173,35 @@ void matrizTransposta(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols, int mt
 }
 
 void matrizTranspostaInPlace(int m[QTD_LINHAS][QTD_COLUNAS], int lins, int cols) {
+    int aux;
     if (lins != cols) {
         printf("Não é possível realizar esta operação, pois a matriz não é quadrada!\n");
         return;
     }
-    
+    for (int i = 0; i < cols; i += 1) {
+        for (int j = 0; j < i; j += 1) {
+            aux = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = aux;
+        }
+    }    
+}
+
+void multiplicarMatrizes(
+    int a[][QTD_COLUNAS], int linsA, int colsA,
+    int b[][QTD_COLUNAS], int linsB, int colsB,
+    int mult[][QTD_COLUNAS]
+) {
+    if (colsA != linsB) {
+        printf("Não é possível realizar esta operação, pois as matrizes não são compatíveis!\n");
+        return;       
+    }
+    for (int i = 0; i < linsA; i += 1) {
+        for (int j = 0; j < colsB; j += 1) {
+            mult[i][j] = 0;
+            for (int k = 0; k < colsA; k += 1) {
+                mult[i][j] =+ a[i][k] * b[k][j];
+            }
+        }
+    }
 }
