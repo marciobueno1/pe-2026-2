@@ -28,6 +28,9 @@ int main() {
     printf("\n\nMatriz Transposta\n");
     matrizTransposta(matriz, QTD_LINHAS, QTD_COLUNAS, matrizTransp);
     imprimirMatrizTransp(matrizTransp, QTD_COLUNAS, QTD_LINHAS);
+    printf("\n\nMatriz Transposta In Place\n");
+    matrizTranspostaInPlace(matriz, QTD_LINHAS, QTD_COLUNAS);
+    imprimirMatrizTransp(matriz, QTD_COLUNAS, QTD_LINHAS);
     return 0;
 }
 
