@@ -34,6 +34,7 @@ void inverterPalavra2(char str[], int inicio, int fim) {
 void inverterPalavras(char str[]) {
     int tam = strlen(str);
     int inicio = 0, fim;
+    // inverterPalavra2(str, 0, tam); // adicionando essa linha resolve questao e da prova
     for (int i = 0; i < tam; i += 1) {
         if (str[i] == ' ') {
             fim = i - 1;
