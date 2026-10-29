@@ -18,6 +18,9 @@ void imprimirPessoa(struct Pessoa p);
 void preencherDigitacaoPessoa(struct Pessoa *p);
 void preencherDigitacaoPessoas(struct Pessoa v[], int n);
 int posPessoaMaisVelha(struct Pessoa v[], int n);
+int buscaSequencialPorIdade(struct Pessoa v[], int n, int idade);
+int buscaSequencialPorNome(struct Pessoa v[], int n, char nome[]);
+void bubblesortPorIdade (struct Pessoa v[], int n);
 
 int main() {
     int posMaisVelha;
@@ -29,6 +32,9 @@ int main() {
     posMaisVelha = posPessoaMaisVelha(pessoas, TAM_PESSOAS);
     printf("\nA pessoa mais velha está na posição %d e é ", posMaisVelha + 1);
     imprimirPessoa(pessoas[posMaisVelha]);
+    printf("\nOREDENAÇÃO...\n");
+    bubblesortPorIdade(pessoas, TAM_PESSOAS);
+    imprimirPessoas(pessoas, TAM_PESSOAS);
     return 0;
 }
 
@@ -84,4 +90,40 @@ int posPessoaMaisVelha(struct Pessoa v[], int n) {
         }
     }
     return pos;
+}
+
+int buscaSequencialPorIdade(struct Pessoa v[], int n, int idade) {
+    for (int i = 0; i < n; i += 1) {
+        if (v[i].idade == idade) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int buscaSequencialPorNome(struct Pessoa v[], int n, char nome[]) {
+    for (int i = 0; i < n; i += 1) {
+        if (strcmp(v[i].nome, nome) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void bubblesortPorIdade (struct Pessoa v[], int n) {
+    int i, pos = 0, trocou = 1, fim = n - 2;
+    struct Pessoa chave;
+    while (trocou) {
+        trocou = 0;
+        for (i = 0; i <= fim; i++) {
+            if (v[i].idade > v[i+1].idade) {
+                chave = v[i];
+                v[i] = v[i+1];
+                v[i+1] = chave;
+                pos = i; 
+                trocou = 1;
+            }
+        }
+        fim = pos - 1;
+    }
 }
