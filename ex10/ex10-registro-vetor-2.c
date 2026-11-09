@@ -127,3 +127,21 @@ void bubblesortPorIdade (struct Pessoa v[], int n) {
         fim = pos - 1;
     }
 }
+
+void bubblesortPorNome (struct Pessoa v[], int n) {
+    int i, pos = 0, trocou = 1, fim = n - 2;
+    struct Pessoa chave;
+    while (trocou) {
+        trocou = 0;
+        for (i = 0; i <= fim; i++) {
+            if (strcmp(v[i].nome, v[i+1].nome) > 0) {
+                chave = v[i];
+                v[i] = v[i+1];
+                v[i+1] = chave;
+                pos = i; 
+                trocou = 1;
+            }
+        }
+        fim = pos - 1;
+    }
+}
