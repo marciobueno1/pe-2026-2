@@ -1,0 +1,4 @@
+"Olá, turma!"
+"O rato roeu a roupa do rei de Roma."
+"Quase sextou!"
+"Posso inserir frase diretamente no VS Code"

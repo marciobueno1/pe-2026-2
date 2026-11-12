@@ -4,7 +4,7 @@ int main() {
     FILE *arq;
     int status;
     double numeros[] = { 3.14, 2.71, 1.618 };
-    arq = fopen("teste.bin", "ab");
+    arq = fopen("teste.bin", "wb");
     if (arq == NULL) {
         printf("Não foi possível criar o arquivo!\n");
         return 1;

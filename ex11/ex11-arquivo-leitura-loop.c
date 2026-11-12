@@ -25,9 +25,9 @@ int main() {
 
     status = fclose(arq);
     if (status == 0) {
-        printf("Arquivo fechado com sucesso!\n");
+        printf("\nArquivo fechado com sucesso!\n");
     } else {
-        printf("Erro no fechamento do arquivo com código %d\n", status);
+        printf("\nErro no fechamento do arquivo com código %d\n", status);
     }
 
     return 0;
